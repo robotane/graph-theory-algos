@@ -8,9 +8,7 @@ Created on Fri Dec 11 15:18:05 2020
 
 from pprint import pprint
 from sys import exit
-
-# Constante pour infini
-INF = 2**10
+from math import inf
 
 # Matrices d'ajacences de quelques graphes
 m = [[0, 0, 0, 1, 1, 0],
@@ -43,36 +41,36 @@ mq = [[0, 0, 1, 0, 1, 1, 1, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 0],
       ]
 
-ma = [[0,   1,   -2,  INF, INF, INF],
-      [INF, 0,   INF, -2,  INF, INF],
-      [INF, 1,   0,   5,   4,   INF],
-      [INF, INF, INF, 0,   INF, INF],
-      [INF, INF, INF, INF, 0,   -1],
-      [INF, INF, INF, -5,  INF,  0],
+ma = [[0, 1, -2, inf, inf, inf],
+      [inf, 0, inf, -2, inf, inf],
+      [inf, 1, 0, 5, 4, inf],
+      [inf, inf, inf, 0, inf, inf],
+      [inf, inf, inf, inf, 0, -1],
+      [inf, inf, inf, -5, inf, 0],
       ]
 
-mb = [[0,   2,   INF, 1,   0,   INF],
-      [INF, 0,   -2,  INF, -1,  -1],
-      [INF, INF, 0,   INF, INF, INF],
-      [INF, -1,  INF, 0,   -1,  INF],
-      [INF, INF, 0,   INF, 0,   2],
-      [INF, INF, -2,  INF, INF, 0]
+mb = [[0, 2, inf, 1, 0, inf],
+      [inf, 0, -2, inf, -1, -1],
+      [inf, inf, 0, inf, inf, inf],
+      [inf, -1, inf, 0, -1, inf],
+      [inf, inf, 0, inf, 0, 2],
+      [inf, inf, -2, inf, inf, 0]
       ]
 
-mc = [[0, 10, 3, INF, 6, INF],
-      [0, 0, INF, INF, INF, INF],
-      [INF, INF, 0, INF, 2, INF],
-      [INF, INF, 1, 0, 3, INF],
-      [INF, 0, INF, INF, 0, 1],
-      [2, 1, INF, INF, INF, 0]
+mc = [[0, 10, 3, inf, 6, inf],
+      [0, 0, inf, inf, inf, inf],
+      [inf, inf, 0, inf, 2, inf],
+      [inf, inf, 1, 0, 3, inf],
+      [inf, 0, inf, inf, 0, 1],
+      [2, 1, inf, inf, inf, 0]
       ]
 
-md = [[0, 5, INF, 2, 6, INF],
-      [INF, 0, 0, INF, 0, INF],
-      [INF, INF, 0, INF, INF, 0],
-      [INF, 1, INF, 0, 0, INF],
-      [INF, INF, 1, 0, 0, 4],
-      [INF, 0, 2, INF, 0, 0]
+md = [[0, 5, inf, 2, 6, inf],
+      [inf, 0, 0, inf, 0, inf],
+      [inf, inf, 0, inf, inf, 0],
+      [inf, 1, inf, 0, 0, inf],
+      [inf, inf, 1, 0, 0, 4],
+      [inf, 0, 2, inf, 0, 0]
       ]
 
 
@@ -91,9 +89,9 @@ def print_list(lis):
 
     """
     for i, li in enumerate(lis):
-        print(f"{i+1}", end=":")
+        print(f"{i + 1}", end=":")
         for s in li:
-            print(f"-->{s+1}", end="")
+            print(f"-->{s + 1}", end="")
         print()
 
 
@@ -104,7 +102,7 @@ def print_tri(tri):
     print()
 
     for k in range(len(tri)):
-        print(f"{k+1:2}", end=" ")
+        print(f"{k + 1:2}", end=" ")
     print()
 
 
@@ -217,22 +215,22 @@ def print_access_tree(g, p, d, s0):
 
     """
     long = len(p)
-    print(f"Sommet source {s0+1}\n")
+    print(f"Sommet source {s0 + 1}\n")
     if isinstance(p, dict):
-        print(", ".join([f"p({k+1})={v+1}" for k, v in p.items()]))
+        print(", ".join([f"p({k + 1})={v + 1}" for k, v in p.items()]))
     else:
-        print(", ".join([f"p({k+1})={v+1}" for k, v in enumerate(p)]))
+        print(", ".join([f"p({k + 1})={v + 1}" for k, v in enumerate(p)]))
 
     print()
     for t in range(long):
         if t == s0:
             continue
         t0 = t
-        print(f"d({s0+1},{t0+1})={'INF' if d[t0]==INF else d[t0]}")
-        chem = f"{t0+1}"
+        print(f"d({s0 + 1},{t0 + 1})={d[t0]}")
+        chem = f"{t0 + 1}"
         while t0 != s0:
             di = g[p[t0]][t0]
-            chem = f"{p[t0]+1}=[{'INF' if di == INF else di}]=>" + chem
+            chem = f"{p[t0] + 1}=[{di}]=>" + chem
             t0 = p[t0]
         print(chem)
         print()

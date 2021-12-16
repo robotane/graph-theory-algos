@@ -5,10 +5,11 @@ Created on Dec 2020
 @author: robotane
 """
 
-from fonctionsDeBase import*
-from ParcoursEnProfondeur import*
+from fonctionsDeBase import *
+from ParcoursEnProfondeur import *
 from PlusCourtChemin import *
 from Tris import *
+
 
 def test():
     def prompt():
@@ -81,8 +82,8 @@ def test():
     prompt()
 
     s, t = 1, 0
-    print(f"\nIl existe un chemin entre {s+1} et {t+1}:", end=" ")
-    print(acces(adj_list, s, t))
+    print(f"\nIl existe un chemin entre {s + 1} et {t + 1}:", end=" ")
+    print("Oui" if acces(adj_list, s, t) else "Non")
 
     prompt()
 
@@ -107,6 +108,7 @@ def test():
     prompt()
 
     print("\nLe graphe a un circuit:", end=" ")
-    print(a_circuit(adj_list))
+    print("Oui" if a_circuit(adj_list) else "Non")
+
 
 test()

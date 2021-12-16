@@ -40,7 +40,7 @@ def tri_topo(graphe):
     while E:
         s = E.pop()
 
-        tri.append(s+1)
+        tri.append(s + 1)
         rang += 1
 
         for t in range(long):
@@ -100,4 +100,3 @@ def norme(graphe):
         # print(f"|{k}| = {v}")
         print(f"|{k + 1}| = {v}")
     return nor
-

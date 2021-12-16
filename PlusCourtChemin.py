@@ -4,7 +4,8 @@ Created on Dec 2020
 @author: robotane
 """
 
-from fonctionsDeBase import INF, print_access_tree
+from fonctionsDeBase import inf, print_access_tree
+
 
 def bellman(graphe, s0):
     """
@@ -40,13 +41,13 @@ def bellman(graphe, s0):
     long = len(graphe)
     for s in range(long):
         if s != s0:
-            d[s] = INF
+            d[s] = inf
             p[s] = s0
         comp[s] = 0
         for t in range(long):
             if s == t:
                 continue
-            if graphe[t][s] < INF:
+            if graphe[t][s] < inf:
                 comp[s] += 1
         if comp[s] == 0:
             E.append(s)
@@ -58,10 +59,10 @@ def bellman(graphe, s0):
         for t in range(long):
             if s == t:
                 continue
-            if graphe[t][s] < INF:
-                val = INF if d[t] == INF else d[t] + graphe[t][s]
-                # if d[t] == INF:
-                #     val = INF
+            if graphe[t][s] < inf:
+                val = d[t] + graphe[t][s]
+                # if d[t] == inf:
+                #     val = inf
                 # else:
                 #     val = d[t] +  graphe[t][s]
                 if val < d[s]:
@@ -71,7 +72,7 @@ def bellman(graphe, s0):
         for t in range(long):
             if s == t:
                 continue
-            if graphe[s][t] < INF:
+            if graphe[s][t] < inf:
                 comp[t] -= 1
                 if comp[t] == 0:
                     E.append(t)
@@ -115,7 +116,7 @@ def dijkstra(graphe, s0):
     long = len(graphe)
     for s in range(long):
         if s != s0:
-            d[s] = INF
+            d[s] = inf
             p[s] = s0
             E.append(s)
 
@@ -127,8 +128,8 @@ def dijkstra(graphe, s0):
         for t in range(long):
             if s == t:
                 continue
-            if graphe[s][t] < INF:
-                val = INF if d[s] == INF else d[s] + graphe[s][t]
+            if graphe[s][t] < inf:
+                val = d[s] + graphe[s][t]
                 if val < d[t]:
                     d[t] = val
                     p[t] = s
@@ -173,7 +174,7 @@ def floyd(graphe):
     for k in range(n):
         for i in range(n):
             for j in range(n):
-                val = INF if (d[i][k] == INF or d[k][j] == INF) else d[i][k] + d[k][j]
+                val = d[i][k] + d[k][j]
                 if val < d[i][j]:
                     d[i][j] = val
                     p[i][j] = p[k][j]
@@ -182,5 +183,4 @@ def floyd(graphe):
     for s0 in range(n):
         print_access_tree(graphe, p[s0], d[s0], s0)
     return d, p
-
-    
+   

@@ -6,6 +6,7 @@ Created on Dec 2020
 
 from fonctionsDeBase import mat_2_adj_list, print_list
 
+
 def ordre_prefixe(graphe):
     """
     Trie le graphe dans l'ordre prefixe
@@ -30,7 +31,7 @@ def ordre_prefixe(graphe):
     def profondeur(s):
         parcouru[s] = True
         # print(s+1)
-        li.append(s+1)
+        li.append(s + 1)
         for t in graphe[s]:
             if not parcouru[t]:
                 profondeur(t)
@@ -69,7 +70,7 @@ def ordre_suffixe(graphe):
             if not parcouru[t]:
                 profondeur(t)
         # print(s+1)
-        li.append(s+1)
+        li.append(s + 1)
 
     for s in range(n):
         if not parcouru[s]:
@@ -111,6 +112,7 @@ def acces(graphe, s0, t0):
             if not parcouru[x]:
                 return profondeur(x, t)
         return False
+
     return profondeur(s0, t0)
 
 
@@ -209,7 +211,7 @@ def tri_topo_prof(graphe):
         for t in graphe[s]:
             if not parcouru[t]:
                 profondeur(t)
-        li.insert(0, s+1)
+        li.insert(0, s + 1)
 
     for s in range(n):
         if not parcouru[s]:
@@ -283,7 +285,7 @@ def a_triangle(graphe):
             if graphe[s][t] or graphe[t][s] and not parcouru[t]:
                 for x in range(n):
                     if (graphe[x][t] or graphe[t][x] and not parcouru[x]) and (graphe[s][x] or graphe[x][s]):
-                        print(s+1, t+1, x+1)
+                        print(s + 1, t + 1, x + 1)
                         return True
         for t in range(n):
             if graphe[s][t] and not parcouru[t]:
@@ -341,6 +343,7 @@ def a_circuit(graphe):
             if circ:
                 break
     return circ
+
 
 k = 0
 
@@ -431,16 +434,16 @@ def a_circuit_el_trace(graphe):
         for t in graphe[s]:
             if not fini[t]:
                 if not parcouru[t]:
-                    print("->", " "*pos[s], f"{s+1}=>p({t+1})")
+                    print("->", " " * pos[s], f"{s + 1}=>p({t + 1})")
                     profondeur(t)
                 else:
                     if (pos[s] - pos[t] - 1) % 2:
-                        print("-v", " "*pos[s], f"{s+1}-->{t+1}")
+                        print("-v", " " * pos[s], f"{s + 1}-->{t + 1}")
                         c += 1
             else:
-                print("-x", " "*pos[s], f"{s+1}-x->p({t+1})")
+                print("-x", " " * pos[s], f"{s + 1}-x->p({t + 1})")
         fini[s] = True
-        print("<-", " "*pos[s], f"<=p({s+1})")
+        print("<-", " " * pos[s], f"<=p({s + 1})")
 
     for s in range(n):
         if not parcouru[s]:
@@ -452,6 +455,7 @@ def a_circuit_el_trace(graphe):
     # print(fini)
     # print(parcouru)
     return c != 0
+
 
 if __name__ == "__main__":
     mt = [[0, 1, 0, 0],
@@ -466,7 +470,7 @@ if __name__ == "__main__":
            [0, 0, 1, 1, 0, 0],
            [0, 0, 0, 0, 1, 0]]
 
-    #test()
+    # test()
     ad = mat_2_adj_list(mt2)
     print_list(ad)
     print()
